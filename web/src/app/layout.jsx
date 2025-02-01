@@ -2,6 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
+import { Suspense } from "react";
+import Loading from "./loading";
+
 import Header from "./component/header";
 import Nav from "./component/nav";
 
@@ -26,8 +29,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <Nav />
+        <Suspense fallback={<Loading/>}><Header /></Suspense>
+        <Suspense fallback={<Loading/>}><Nav /></Suspense>
         {children}
         <SpeedInsights />
       </body>
