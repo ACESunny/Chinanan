@@ -1,43 +1,63 @@
-`"use client"`
+"use client";
 
-// app/dashboard/page.js
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
-export default function Dashboard() {
+function DashboardContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    fetch('/api/data')
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
+    const page = parseInt(searchParams.get("page")) || 1;
+    setCurrentPage(page);
+  }, [searchParams]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`/api/items?page=${currentPage}&pageSize=10`);
+      const result = await res.json();
+      setData(result.data);
+      setTotalPages(result.totalPages);
+    }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+    fetchData();
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    router.push(`/dashboard?page=${page}`);
+  };
 
   return (
     <div>
       <h1>Dashboard</h1>
       <ul>
         {data.map((item) => (
-          <li key={item.id}>{item.value}</li>
+          <li key={item.id}>{item.name}</li>
         ))}
       </ul>
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            disabled={index + 1 === currentPage}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }
