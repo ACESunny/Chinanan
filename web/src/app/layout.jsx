@@ -2,9 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import { Suspense } from "react";
-import Loading from "./loading";
-
 import Header from "./component/header";
 import Nav from "./component/nav";
 
@@ -31,9 +28,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
         <Nav />
-        <Suspense fallback={<Loading />}>
-          {children}
-        </Suspense>
+        {children}
         <SpeedInsights />
       </body>
     </html>
