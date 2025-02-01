@@ -1,3 +1,5 @@
+`"use client"`
+
 // app/dashboard/page.js
 import React, { useEffect, useState } from 'react';
 
