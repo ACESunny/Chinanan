@@ -1,10 +1,20 @@
+import { Suspense } from "react";
+import Loading from "./loading";
 
-export default function Home() {
+async function fetchData() {
+  const res = await fetch('https://api.example.com/data');
+  return res.json();
+}
+
+function DataComponent() {
+  const data = fetchData(); // ใช้ Suspense ร่วมกับไลบรารีที่รองรับ
+  return <div>{JSON.stringify(data)}</div>;
+}
+
+export default function Page() {
   return (
-    <div>
-      <main>
-        <p></p>
-      </main>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <DataComponent />
+    </Suspense>
   );
 }
