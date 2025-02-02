@@ -4,7 +4,9 @@ export default function APIs() {
     return (
         <div>
             <h1>This is my APIs</h1>
-            <Link href={/APIs/os}>Go to os</Link>
+            <p>
+                <Link href="/APIs/os">Go to os</Link>
+            </p>
         </div>
     );
 }
