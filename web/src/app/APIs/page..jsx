@@ -1,11 +1,7 @@
-function APIs() {
+export default function APIs() {
     return (
         <div>
-            <main>
-                <h1>This is my APIs</h1>
-            </main>
+            <h1>This is my APIs</h1>
         </div>
     );
 }
-
-export default APIs;
