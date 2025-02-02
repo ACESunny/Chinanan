@@ -1,4 +1,4 @@
-export default function APIs() {
+function APIs() {
     return (
         <div>
             <main>
@@ -7,3 +7,5 @@ export default function APIs() {
         </div>
     );
 }
+
+export default APIs;
