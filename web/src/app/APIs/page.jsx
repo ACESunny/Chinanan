@@ -57,7 +57,7 @@ export default function APIs() {
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
-                        className="w-[200px] justify-center"
+                        className="flex w-[200px] justify-center"
                     >
                     {value
                         ? frameworks.find((framework) => framework.value === value)?.label
