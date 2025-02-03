@@ -1,10 +1,17 @@
+// Vercel
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react"
 
-import Header from "./component/header";
-import Nav from "./component/nav";
-import Footer from "./component/footer";
+// Shadcn
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
 
+// Components
+import Header from "./components/header";
+import Nav from "./components/nav";
+import Footer from "./components/footer";
+
+// Styles
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -31,7 +38,13 @@ export default function RootLayout({ children }) {
       >
         <Nav />
         
-        {children}
+        <SidebarProvider>
+          <AppSidebar />
+          <main>
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
         
         <Header />
         <Footer />
