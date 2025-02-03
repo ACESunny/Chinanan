@@ -7,9 +7,9 @@ import { SidebarProvider, SidebarTrigger } from "../components/ui/sidebar"
 import { AppSidebar } from "../components/ui/app-sidebar"
 
 // Components
-import Header from "./components/header";
-import Nav from "./components/nav";
-import Footer from "./components/footer";
+import Header from "../components/header";
+import Nav from "../components/nav";
+import Footer from "../components/footer";
 
 // Styles
 import { Geist, Geist_Mono } from "next/font/google";
@@ -36,9 +36,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Nav />
         
         <SidebarProvider>
+        <Nav />
           <AppSidebar />
           <main>
             <SidebarTrigger />
