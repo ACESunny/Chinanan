@@ -4,26 +4,10 @@ import { Analytics } from "@vercel/analytics/react"
 
 // Shadcn
 import { SidebarProvider, SidebarTrigger } from "../components/ui/sidebar"
-import { AppSidebar } from "../components/ui/app-sidebar"
-
-// Components
-import Header from "../components/header";
-import Nav from "../components/nav";
-import Footer from "../components/footer";
+import { AppSidebar } from "../components/app-sidebar"
 
 // Styles
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Chinanan Thailand",
@@ -33,21 +17,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         
         <SidebarProvider>
-        <Nav />
           <AppSidebar />
           <main>
             <SidebarTrigger />
             {children}
           </main>
         </SidebarProvider>
-        
-        <Header />
-        <Footer />
 
         <SpeedInsights />
         <Analytics />
