@@ -50,13 +50,14 @@ export default function APIs() {
     return (
         <div>
             <h1 class="p-5 m-10 text-center">This is my APIs</h1>
+
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                     <Button
-                    variant="outline"
-                    role="combobox"
-                    aria-expanded={open}
-                    className="w-[200px] justify-between"
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className="w-[200px] justify-center"
                     >
                     {value
                         ? frameworks.find((framework) => framework.value === value)?.label
@@ -68,17 +69,17 @@ export default function APIs() {
                     <Command>
                     <CommandInput placeholder="Search framework..." className="h-9" />
                     <CommandList>
-                        <CommandEmpty>No framework found.</CommandEmpty>
+                        <CommandEmpty>No API found.</CommandEmpty>
                         <CommandGroup>
                         {frameworks.map((framework) => (
                             <CommandItem
-                            key={framework.value}
-                            value={framework.value}
-                            onSelect={(currentValue) => {
-                                setValue(currentValue === value ? "" : currentValue)
-                                setOpen(false)
-                            }}
-                            >
+                                key={framework.value}
+                                value={framework.value}
+                                onSelect={(currentValue) => {
+                                    setValue(currentValue === value ? "" : currentValue)
+                                    setOpen(false)
+                                }
+                            }>
                             {framework.label}
                             <Check
                                 className={cn(
