@@ -20,20 +20,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div>
+
     <SidebarProvider>
       <AppSidebar />
       <main>
         <SidebarTrigger />
         {children}
+      </main>
         <Header />
         <Footer />
-      </main>
   
       <SpeedInsights />
       <Analytics />
     </SidebarProvider>
 
-    </div>
   );
 }
