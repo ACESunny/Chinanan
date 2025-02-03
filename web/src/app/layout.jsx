@@ -6,7 +6,6 @@ import { Analytics } from "@vercel/analytics/react"
 import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -39,24 +38,12 @@ export default function RootLayout({ children }) {
                 <Separator orientation="vertical" className="mr-2 h-4" />
                 <Breadcrumb>
                   <BreadcrumbList>
-                    <BreadcrumbItem>
-                      <BreadcrumbLink asChild>
-                        <Link href="/">Home</Link>
-                      </BreadcrumbLink>
+                    <BreadcrumbItem className="hidden md:block">
+                      <BreadcrumbLink href="/">Home</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator />
+                    <BreadcrumbSeparator className="hidden md:block" />
                     <BreadcrumbItem>
-                      <BreadcrumbEllipsis />
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                      <BreadcrumbLink asChild>
-                        <Link href="/docs/components">Components</Link>
-                      </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                      <BreadcrumbLink href="/APIs">APIs</BreadcrumbLink>
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
