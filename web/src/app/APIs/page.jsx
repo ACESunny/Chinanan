@@ -49,51 +49,51 @@ export default function APIs() {
 
     return (
         <div>
-            <h1 class="p-5 m-10 text-center">This is my APIs</h1>
-
-            <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                    <Button
-                        variant="outline"
-                        role="combobox"
-                        aria-expanded={open}
-                        className="flex w-[200px] justify-center"
-                    >
-                    {value
-                        ? frameworks.find((framework) => framework.value === value)?.label
-                        : "Select framework..."}
-                    <ChevronsUpDown className="opacity-50" />
-                    </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                    <Command>
-                    <CommandInput placeholder="Search framework..." className="h-9" />
-                    <CommandList>
-                        <CommandEmpty>No API found.</CommandEmpty>
-                        <CommandGroup>
-                        {frameworks.map((framework) => (
-                            <CommandItem
-                                key={framework.value}
-                                value={framework.value}
-                                onSelect={(currentValue) => {
-                                    setValue(currentValue === value ? "" : currentValue)
-                                    setOpen(false)
-                                }
-                            }>
-                            {framework.label}
-                            <Check
-                                className={cn(
-                                "ml-auto",
-                                value === framework.value ? "opacity-100" : "opacity-0"
-                                )}
-                            />
-                            </CommandItem>
-                        ))}
-                        </CommandGroup>
-                    </CommandList>
-                    </Command>
-                </PopoverContent>
-            </Popover>
+            <div className="flex justify-center m-5">
+                <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger  asChild>
+                        <Button
+                            variant="outline"
+                            role="combobox"
+                            aria-expanded={open}
+                            className="w-[25%] justify-center"
+                        >
+                        {value
+                            ? frameworks.find((framework) => framework.value === value)?.label
+                            : "Select APIs"}
+                        <ChevronsUpDown className="opacity-50" />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[200px] p-0">
+                        <Command>
+                            <CommandInput placeholder="Search APIs..." className="h-9" />
+                            <CommandList>
+                                <CommandEmpty>No API found.</CommandEmpty>
+                                <CommandGroup>
+                                {frameworks.map((framework) => (
+                                    <CommandItem
+                                        key={framework.value}
+                                        value={framework.value}
+                                        onSelect={(currentValue) => {
+                                            setValue(currentValue === value ? "" : currentValue)
+                                            setOpen(false)
+                                        }
+                                    }>
+                                    {framework.label}
+                                    <Check
+                                        className={cn(
+                                        "ml-auto",
+                                        value === framework.value ? "opacity-100" : "opacity-0"
+                                        )}
+                                    />
+                                    </CommandItem>
+                                ))}
+                                </CommandGroup>
+                            </CommandList>
+                        </Command>
+                    </PopoverContent>
+                </Popover>
+            </div>
         </div>
     );
 }
